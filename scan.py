@@ -30,8 +30,3 @@ for filename in glob.glob("*.pdf"):
 #     print(file)
     # convert(file, outputDir)
     convert(filename, outputDir)
-
-
-qr = qrtools.QR()
-qr.decode("horn.png")
-print qr.data
