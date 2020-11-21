@@ -47,34 +47,43 @@ def convert(file, targetDir, outputDir):
             if not os.path.exists(newDestinationFolder):
                 os.makedirs(newDestinationFolder)
 
-            # Move File
-
-            num2 = random.randint(10000, 99999)
-            shutil.move(file, newDestinationFolder+"/" +
-                        hashlib.md5(folderName.encode()).hexdigest() + "-"+str(num2)+originalFile_extension)
-
-            print("----"+newDestinationFolder+"----")
-            print(folderName)
             listFile = [f for f in glob.glob(
                 newDestinationFolder + "/*.*")]
 
             print("====================")
-            listFile.sort(key=os.path.getctime)
-            num = 0
-            for f in listFile:
-                num += 1
-                f_name, f_ext = os.path.splitext(f)
-                renameFilename = folderName+"-"+str(num).zfill(4)
-                print(num, f, newDestinationFolder+"/"+renameFilename+f_ext)
-                os.rename(f, newDestinationFolder+"/"+renameFilename+f_ext)
+
+            # Move File
+            num2 = str(len(listFile)).zfill(3)+"-" + \
+                str(random.randint(100, 999))
+            # hashlib.md5(folderName.encode()).hexdigest()
+            shutil.move(file, newDestinationFolder+"/" +
+                        folderName + "-"+str(num2)+originalFile_extension)
+
+            # listFile.sort(key=os.path.getctime)
+            # num = 0
+
+            # for f in listFile:
+            #     num += 1
+            #     f_name, f_ext = os.path.splitext(f)
+            #     renameFilename = folderName+"-"+str(num).zfill(4)
+            #     print(num, f, newDestinationFolder+"/"+renameFilename+f_ext)
+            #     os.rename(f, newDestinationFolder+"/"+renameFilename+f_ext)
+
+            # num = 0
+            # for f in listFile:
+            #     num += 1
+            #     f_name, f_ext = os.path.splitext(f)
+            #     renameFilename = folderName+"-"+str(num).zfill(4)
+            #     print(num, f, newDestinationFolder+"/"+renameFilename+f_ext)
+            #     os.rename(f, newDestinationFolder+"/"+renameFilename+f_ext)
 
 
 # args = sys.argv
 for filename in glob.glob(targetDir + "*.pdf"):
-    print(filename)
-# if len(args) > 1:
-#     file = args[1]
-#     print(file)
+    # print(filename)
+    # if len(args) > 1:
+    #     file = args[1]
+    #     print(file)
     # convert(file, outputDir)
     convert(filename, targetDir, outputDir)
-    print(" ")
+    # print(" ")
